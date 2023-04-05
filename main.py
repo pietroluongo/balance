@@ -80,7 +80,7 @@ while True:
 
     # Draw a circle at the centroid position
     if centroid is not None:
-        cv2.circle(frame, centroid, 5, (0, 0, 255), -1)
+        cv2.circle(frame, centroid, 5, (250, 95, 237), -1)
 
     # Display the color mask and the original frame in two windows
     if color_mask is not None:
