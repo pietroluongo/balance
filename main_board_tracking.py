@@ -2,62 +2,71 @@ import cv2
 import numpy as np
 
 # Set up the video capture
-cap = cv2.VideoCapture('http://192.168.0.121:4747/video')
+cap = cv2.VideoCapture(0)
 
 # Initialize the color mask and centroid
 color_mask = None
 centroid = None
 
-# Define the callback function for the mouse event
+
+def calc_color_bounds(bgr_color):
+    # Convert the color from BGR to HSV
+    hsv_color = cv2.cvtColor(
+        np.array([[bgr_color]], dtype=np.uint8), cv2.COLOR_BGR2HSV)[0][0]
+    # Print the HSV values of the color
+    print("Selected color: HSV" + str(hsv_color))
+
+    # Define the lower and upper bounds of the color
+    s_range = 60
+    v_range = 60
+
+    lower_s = 0 if hsv_color[1] - s_range < 0 else hsv_color[1] - s_range
+    upper_s = 255 if hsv_color[1] + \
+        s_range > 255 else hsv_color[1] + s_range
+    lower_v = 0 if hsv_color[2] - v_range < 0 else hsv_color[2] - v_range
+    upper_v = 255 if hsv_color[2] + \
+        v_range > 255 else hsv_color[2] + v_range
+    # Update the color mask to highlight only the pixels in the selected color
+    lower_color = np.array([hsv_color[0]-10, lower_s, lower_v])
+    upper_color = np.array([hsv_color[0]+10, upper_s, upper_v])
+    hsv_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+    color_mask = cv2.inRange(hsv_frame, lower_color, upper_color)
+    return lower_color, upper_color, color_mask
+
+
+def hsv_to_rgb(color):
+    return cv2.cvtColor(
+        np.array([[color]], dtype=np.uint8), cv2.COLOR_HSV2RGB)[0][0][::-1]
+
+
+def show_selected_colors(upper_color_rgb, lower_color_rgb, rgb_color):
+    color_image = np.zeros((210, 200, 3), np.uint8)
+    color_image[:70, :] = upper_color_rgb
+    color_image[70:140, :] = rgb_color[::-1]
+    color_image[140:, :] = lower_color_rgb
+    color_image_resized = cv2.resize(color_image, (200, 100))
+    cv2.imshow("RGB + Bounds", color_image_resized)
+    cv2.moveWindow("RGB + Bounds", 1290, 0)
 
 
 def mouse_callback(event, x, y, flags, param):
     global color_mask, lower_color, upper_color
+    # Get the color of the pixel at the clicked location
+    bgr_color = frame[y, x]
 
     if event == cv2.EVENT_LBUTTONUP:
-        # Get the color of the pixel at the clicked location
-        bgr_color = frame[y, x]
-        # Convert the color from BGR to HSV
-        hsv_color = cv2.cvtColor(
-            np.array([[bgr_color]], dtype=np.uint8), cv2.COLOR_BGR2HSV)[0][0]
-        # Print the HSV values of the color
-        print("Selected color: HSV" + str(hsv_color))
-
-        # Define the lower and upper bounds of the color
-        s_range = 60
-        v_range = 60
-
-        lower_s = 0 if hsv_color[1] - s_range < 0 else hsv_color[1] - s_range
-        upper_s = 255 if hsv_color[1] + \
-            s_range > 255 else hsv_color[1] + s_range
-        lower_v = 0 if hsv_color[2] - v_range < 0 else hsv_color[2] - v_range
-        upper_v = 255 if hsv_color[2] + \
-            v_range > 255 else hsv_color[2] + v_range
-        # Update the color mask to highlight only the pixels in the selected color
-        lower_color = np.array([hsv_color[0]-10, lower_s, lower_v])
-        upper_color = np.array([hsv_color[0]+10, upper_s, upper_v])
-        hsv_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-        color_mask = cv2.inRange(hsv_frame, lower_color, upper_color)
-
+        lower_color, upper_color, color_mask = calc_color_bounds(bgr_color)
         # Convert the color from BGR to RGB
         rgb_color = (int(bgr_color[2]), int(bgr_color[1]), int(bgr_color[0]))
         # Print the RGB values of the color
         print("Selected color: RGB" + str(rgb_color))
         print('\n')
         # Convert the lower and upper colors from HSV to RGB
-        lower_color_rgb = cv2.cvtColor(
-            np.array([[lower_color]], dtype=np.uint8), cv2.COLOR_HSV2RGB)[0][0][::-1]
-        upper_color_rgb = cv2.cvtColor(
-            np.array([[upper_color]], dtype=np.uint8), cv2.COLOR_HSV2RGB)[0][0][::-1]
+        lower_color_rgb = hsv_to_rgb(lower_color)
+        upper_color_rgb = hsv_to_rgb(upper_color)
 
         # Display the selected color, lower color, and upper color in a single window
-        color_image = np.zeros((210, 200, 3), np.uint8)
-        color_image[:70, :] = upper_color_rgb
-        color_image[70:140, :] = rgb_color[::-1]
-        color_image[140:, :] = lower_color_rgb
-        color_image_resized = cv2.resize(color_image, (200, 100))
-        cv2.imshow("RGB", color_image_resized)
-        cv2.moveWindow("RGB", 1290, 0)
+        show_selected_colors(upper_color_rgb, lower_color_rgb, rgb_color)
 
 
 while True:
