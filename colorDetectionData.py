@@ -5,7 +5,7 @@ import cv2
 
 class ColorDetectionData:
     def __init__(self):
-        self._color_mask = np.zeros((480, 640, 3), np.uint8)
+        self._hsv__color_mask = np.zeros((480, 640, 1), np.uint8)
 
         self._hsv__lower_color = np.array([0, 0, 0])
         self._rgb__lower_color = np.array([0, 0, 0])
@@ -18,6 +18,7 @@ class ColorDetectionData:
 
         self._s_range = 60
         self._v_range = 60
+        self._centroid = None
 
     def _calc_color_bounds(self, hsv__frame):
         hsv_color = self._hsv__picked_color
@@ -36,12 +37,40 @@ class ColorDetectionData:
         # Update the color mask to highlight only the pixels in the selected color
         self._hsv__lower_color = np.array([hsv_color[0]-10, lower_s, lower_v])
         self._hsv__upper_color = np.array([hsv_color[0]+10, upper_s, upper_v])
-        self._color_mask = cv2.inRange(
+        self._hsv__color_mask = cv2.inRange(
             hsv__frame, self._hsv__lower_color, self._hsv__upper_color)
+
+    def update_mask(self, hsv__frame):
+        self._hsv__color_mask = cv2.inRange(
+            hsv__frame, self._hsv__lower_color, self._hsv__upper_color)
+
+
+    def get_center(self):
+        contours, _ = cv2.findContours(
+            self._hsv__color_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        # Find the largest contour
+        max_contour = None
+        max_contour_area = 0
+        for contour in contours:
+            area = cv2.contourArea(contour)
+            if area > max_contour_area:
+                max_contour = contour
+                max_contour_area = area
+        if max_contour is not None:
+            moments = cv2.moments(max_contour)
+            if moments["m00"] > 0:
+                centroid_x = int(moments["m10"] / moments["m00"])
+                centroid_y = int(moments["m01"] / moments["m00"])
+                self._centroid = (centroid_x, centroid_y)
+            else:
+                self._centroid = None
+        else:
+            self._centroid = None
+        return self._centroid
 
     @property
     def color_mask(self):
-        return self._color_mask
+        return self._hsv__color_mask
 
     @property
     def rgb__lower_color(self):
