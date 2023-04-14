@@ -15,3 +15,7 @@ def bgr_to_rgb(bgr_color):
 def rgb_to_hsv(rgb_color):
     return cv2.cvtColor(
         np.array([[rgb_color]], dtype=np.uint8), cv2.COLOR_RGB2HSV)[0][0]
+
+def hsv_to_rgb(hsv_color):
+    return cv2.cvtColor(
+        np.array([[hsv_color]], dtype=np.uint8), cv2.COLOR_HSV2RGB)[0][0]
