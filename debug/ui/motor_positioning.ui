@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>542</width>
-    <height>666</height>
+    <height>664</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,20 +19,13 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
-     <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="2" alignment="Qt::AlignHCenter">
-       <widget class="QLabel" name="label_2">
-        <property name="text">
-         <string>M2</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1">
-       <widget class="QLabel" name="label_4">
+     <layout class="QGridLayout" name="mainLayout">
+      <item row="1" column="2" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="m0_value">
         <property name="minimumSize">
          <size>
-          <width>40</width>
-          <height>0</height>
+          <width>0</width>
+          <height>40</height>
          </size>
         </property>
         <property name="text">
@@ -40,8 +33,35 @@
         </property>
        </widget>
       </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="m1_label">
+        <property name="text">
+         <string>M1</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="m0_label">
+        <property name="text">
+         <string>M0</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2">
+       <widget class="QSlider" name="m0_slider">
+        <property name="maximum">
+         <number>100</number>
+        </property>
+        <property name="value">
+         <number>50</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
       <item row="3" column="2">
-       <widget class="QSlider" name="verticalSlider">
+       <widget class="QSlider" name="m1_slider">
         <property name="maximum">
          <number>100</number>
         </property>
@@ -56,12 +76,12 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="2" alignment="Qt::AlignHCenter">
-       <widget class="QLabel" name="label_3">
+      <item row="3" column="1">
+       <widget class="QLabel" name="m1_value">
         <property name="minimumSize">
          <size>
-          <width>0</width>
-          <height>40</height>
+          <width>40</width>
+          <height>0</height>
          </size>
         </property>
         <property name="text">
@@ -69,48 +89,28 @@
         </property>
        </widget>
       </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>M1</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="2">
-       <widget class="QSlider" name="horizontalSlider">
-        <property name="maximum">
-         <number>100</number>
-        </property>
-        <property name="value">
-         <number>50</number>
-        </property>
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-       </widget>
-      </item>
      </layout>
     </item>
     <item>
-     <layout class="QVBoxLayout" name="verticalLayout">
+     <layout class="QVBoxLayout" name="menuLayout">
       <item>
-       <widget class="QCheckBox" name="checkBox">
+       <widget class="QCheckBox" name="autoupdate_checkbox">
         <property name="text">
          <string>Atualização automática</string>
         </property>
        </widget>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout">
+       <layout class="QHBoxLayout" name="radioLayout">
         <item>
-         <widget class="QRadioButton" name="radioButton">
+         <widget class="QRadioButton" name="active_mode_radio_button">
           <property name="text">
            <string>Modo Ativo</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QRadioButton" name="radioButton_2">
+         <widget class="QRadioButton" name="passive_mode_radio_button">
           <property name="text">
            <string>Modo Passivo</string>
           </property>
@@ -132,7 +132,11 @@
     </rect>
    </property>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QStatusBar" name="statusbar">
+   <property name="sizeGripEnabled">
+    <bool>true</bool>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
