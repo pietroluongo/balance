@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QWidget, QLabel
 from .constants import WIDTH, HEIGHT
-from mqtt_sender import Sender
+from comms.mqtt_sender import Sender
 
 class ConnectionStatus:
     def __init__(self, parent: QWidget):

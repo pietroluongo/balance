@@ -115,9 +115,9 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Posicionamento de Motores", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"M2", None))
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"M1", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"00.0", None))
-        self.label.setText(QCoreApplication.translate("MainWindow", u"M1", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", u"M0", None))
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"00.0", None))
         self.checkBox.setText(QCoreApplication.translate("MainWindow", u"Atualiza\u00e7\u00e3o autom\u00e1tica", None))
         self.radioButton.setText(QCoreApplication.translate("MainWindow", u"Modo Ativo", None))

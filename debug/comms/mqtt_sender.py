@@ -1,7 +1,5 @@
 import random
 from paho.mqtt import client as mqtt_client
-from PySide6.QtCore import Signal
-
 
 class Singleton(type):
     _instances = {}
@@ -19,7 +17,6 @@ class Sender(object, metaclass=Singleton):
         self._topic = "python/mqtt"
         self._client_id = f"python-mqtt-{random.randint(0, 1000)}"
         self._client = self._connect()
-        self._signal = Signal(bool)
         print(self._client)
         if self._client is not None:
             self._client.loop_start()
