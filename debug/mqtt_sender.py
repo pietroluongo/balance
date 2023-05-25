@@ -1,14 +1,25 @@
 import random
 from paho.mqtt import client as mqtt_client
+from PySide6.QtCore import Signal
 
 
-class Sender(object):
+class Singleton(type):
+    _instances = {}
+
+    def __call__(cls, *args, **kwargs):
+        if cls not in cls._instances:
+            cls._instances[cls] = super(Singleton, cls).__call__(*args, **kwargs)
+        return cls._instances[cls]
+
+
+class Sender(object, metaclass=Singleton):
     def __init__(self):
         self._broker = "localhost"
         self._port = 1883
         self._topic = "python/mqtt"
         self._client_id = f"python-mqtt-{random.randint(0, 1000)}"
         self._client = self._connect()
+        self._signal = Signal(bool)
         print(self._client)
         if self._client is not None:
             self._client.loop_start()
@@ -28,7 +39,6 @@ class Sender(object):
     def register_connect_callback(self, callback):
         self._client.on_connect = callback
 
-
     def is_connected(self) -> bool:
         return self._client is not None and self._client.is_connected() is True
 
@@ -45,6 +55,3 @@ class Sender(object):
                 print(f"Failed to send message to topic {topic}")
         except Exception as ex:
             print(ex)
-
-
-Sender = Sender()

@@ -1,5 +1,7 @@
-from PyQt5.QtWidgets import QWidget, QLabel, QSlider
-from PyQt5.QtCore import Qt
+# from PyQt5.QtWidgets import QWidget, QLabel, QSlider
+# from PyQt5.QtCore import Qt
+from PySide6.QtWidgets import QWidget, QLabel, QSlider
+from PySide6.QtCore import Qt
 from .constants import WIDTH, HEIGHT
 
 LABEL_MARGIN = WIDTH // 25
@@ -21,7 +23,7 @@ class Slider(object):
         )
 
     def _init_slider(self, parent: QWidget, pos_x: int, pos_y: int):
-        slider = QSlider(Qt.Horizontal, parent)
+        slider = QSlider(Qt.Orientation.Horizontal, parent)
         slider.setGeometry(pos_x, pos_y, WIDTH - WIDTH // 3, 30)
         slider.setRange(0, 100)
         slider.show()
