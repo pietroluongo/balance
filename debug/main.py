@@ -1,5 +1,8 @@
 from gui.gui import draw_all
 from comms.mqtt_sender import Sender
+import signal
+
+signal.signal(signal.SIGINT, signal.SIG_DFL)
 
 def main():
     _sender = Sender()
