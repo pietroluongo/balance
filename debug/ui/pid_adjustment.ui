@@ -7,16 +7,16 @@
     <x>0</x>
     <y>0</y>
     <width>879</width>
-    <height>313</height>
+    <height>243</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Ajuste PID</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout_5">
+   <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
        <layout class="QVBoxLayout" name="pOuterLayout">
         <item>
@@ -51,11 +51,23 @@
             <property name="maximum">
              <number>1000</number>
             </property>
+            <property name="singleStep">
+             <number>10</number>
+            </property>
+            <property name="pageStep">
+             <number>100</number>
+            </property>
             <property name="value">
              <number>0</number>
             </property>
             <property name="invertedAppearance">
              <bool>false</bool>
+            </property>
+            <property name="notchTarget">
+             <double>0.000000000000000</double>
+            </property>
+            <property name="notchesVisible">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
@@ -83,9 +95,9 @@
        </layout>
       </item>
       <item>
-       <layout class="QVBoxLayout" name="verticalLayout_4">
+       <layout class="QVBoxLayout" name="iOuterLayout">
         <item>
-         <widget class="QLCDNumber" name="lcdNumber_3">
+         <widget class="QLCDNumber" name="i_value">
           <property name="autoFillBackground">
            <bool>false</bool>
           </property>
@@ -110,12 +122,34 @@
          </widget>
         </item>
         <item>
-         <layout class="QGridLayout" name="gridLayout_3">
+         <layout class="QGridLayout" name="iInnerLayout">
           <item row="0" column="0">
-           <widget class="QDial" name="dial_3"/>
+           <widget class="QDial" name="i_dial">
+            <property name="maximum">
+             <number>1000</number>
+            </property>
+            <property name="singleStep">
+             <number>10</number>
+            </property>
+            <property name="pageStep">
+             <number>100</number>
+            </property>
+            <property name="value">
+             <number>0</number>
+            </property>
+            <property name="invertedAppearance">
+             <bool>false</bool>
+            </property>
+            <property name="notchTarget">
+             <double>0.000000000000000</double>
+            </property>
+            <property name="notchesVisible">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QLabel" name="label_6">
+           <widget class="QLabel" name="i_label">
             <property name="font">
              <font>
               <family>DejaVu Sans</family>
@@ -138,9 +172,9 @@
        </layout>
       </item>
       <item>
-       <layout class="QVBoxLayout" name="verticalLayout_3">
+       <layout class="QVBoxLayout" name="dOuterLayout">
         <item>
-         <widget class="QLCDNumber" name="lcdNumber_2">
+         <widget class="QLCDNumber" name="d_value">
           <property name="autoFillBackground">
            <bool>false</bool>
           </property>
@@ -165,12 +199,34 @@
          </widget>
         </item>
         <item>
-         <layout class="QGridLayout" name="gridLayout_2">
+         <layout class="QGridLayout" name="dInnerLayout">
           <item row="0" column="0">
-           <widget class="QDial" name="dial_2"/>
+           <widget class="QDial" name="d_dial">
+            <property name="maximum">
+             <number>1000</number>
+            </property>
+            <property name="singleStep">
+             <number>10</number>
+            </property>
+            <property name="pageStep">
+             <number>100</number>
+            </property>
+            <property name="value">
+             <number>0</number>
+            </property>
+            <property name="invertedAppearance">
+             <bool>false</bool>
+            </property>
+            <property name="notchTarget">
+             <double>0.000000000000000</double>
+            </property>
+            <property name="notchesVisible">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QLabel" name="label_5">
+           <widget class="QLabel" name="d_label">
             <property name="font">
              <font>
               <family>DejaVu Sans</family>
@@ -195,11 +251,22 @@
      </layout>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButton">
-      <property name="text">
-       <string>Enviar</string>
-      </property>
-     </widget>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QPushButton" name="send_m0_btn">
+        <property name="text">
+         <string>Enviar</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="send_m1_btn">
+        <property name="text">
+         <string>PushButton</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>

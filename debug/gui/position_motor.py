@@ -1,3 +1,4 @@
+import json
 from enum import Enum
 from PySide6.QtWidgets import QMainWindow
 from PySide6.QtCore import Qt
@@ -70,9 +71,15 @@ class PositionMotorWindow(QMainWindow, Ui_MainWindow):
 
     def _dispatch_motor_command(self, val: float, motor: Motor):
         if motor == Motor.M0:
-            self._sender.publish(str(val), "/balance/debug/setM0")
+            obj = {
+            "m0": str(-val)
+            }
+            self._sender.publish(json.dumps(obj), "/balance/debug/m0")
         else:
-            self._sender.publish(str(val), "/balance/debug/setM1")
+            obj = {
+             "m1": str(val)
+            }
+            self._sender.publish(json.dumps(obj), "/balance/debug/m1")
 
     def _handle_vertical_slider_mouseup(self):
         if not self._automatic_update:

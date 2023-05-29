@@ -25,7 +25,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(879, 313)
+        MainWindow.resize(879, 243)
         self.action_Salvar_ajuste = QAction(MainWindow)
         self.action_Salvar_ajuste.setObjectName(u"action_Salvar_ajuste")
         self.action_Sair = QAction(MainWindow)
@@ -34,10 +34,10 @@ class Ui_MainWindow(object):
         self.action_Carregar_ajuste.setObjectName(u"action_Carregar_ajuste")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
-        self.verticalLayout_5 = QVBoxLayout(self.centralwidget)
-        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
-        self.horizontalLayout_2 = QHBoxLayout()
-        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.verticalLayout = QVBoxLayout(self.centralwidget)
+        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.horizontalLayout = QHBoxLayout()
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.pOuterLayout = QVBoxLayout()
         self.pOuterLayout.setObjectName(u"pOuterLayout")
         self.p_value = QLCDNumber(self.centralwidget)
@@ -57,8 +57,12 @@ class Ui_MainWindow(object):
         self.p_dial = QDial(self.centralwidget)
         self.p_dial.setObjectName(u"p_dial")
         self.p_dial.setMaximum(1000)
+        self.p_dial.setSingleStep(10)
+        self.p_dial.setPageStep(100)
         self.p_dial.setValue(0)
         self.p_dial.setInvertedAppearance(False)
+        self.p_dial.setNotchTarget(0.000000000000000)
+        self.p_dial.setNotchesVisible(True)
 
         self.pInnerLayout.addWidget(self.p_dial, 0, 0, 1, 1)
 
@@ -77,85 +81,109 @@ class Ui_MainWindow(object):
         self.pOuterLayout.addLayout(self.pInnerLayout)
 
 
-        self.horizontalLayout_2.addLayout(self.pOuterLayout)
+        self.horizontalLayout.addLayout(self.pOuterLayout)
 
-        self.verticalLayout_4 = QVBoxLayout()
-        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
-        self.lcdNumber_3 = QLCDNumber(self.centralwidget)
-        self.lcdNumber_3.setObjectName(u"lcdNumber_3")
-        self.lcdNumber_3.setAutoFillBackground(False)
-        self.lcdNumber_3.setFrameShape(QFrame.Box)
-        self.lcdNumber_3.setFrameShadow(QFrame.Raised)
-        self.lcdNumber_3.setSmallDecimalPoint(False)
-        self.lcdNumber_3.setDigitCount(5)
-        self.lcdNumber_3.setSegmentStyle(QLCDNumber.Filled)
-        self.lcdNumber_3.setProperty("value", 1.000000000000000)
+        self.iOuterLayout = QVBoxLayout()
+        self.iOuterLayout.setObjectName(u"iOuterLayout")
+        self.i_value = QLCDNumber(self.centralwidget)
+        self.i_value.setObjectName(u"i_value")
+        self.i_value.setAutoFillBackground(False)
+        self.i_value.setFrameShape(QFrame.Box)
+        self.i_value.setFrameShadow(QFrame.Raised)
+        self.i_value.setSmallDecimalPoint(False)
+        self.i_value.setDigitCount(5)
+        self.i_value.setSegmentStyle(QLCDNumber.Filled)
+        self.i_value.setProperty("value", 1.000000000000000)
 
-        self.verticalLayout_4.addWidget(self.lcdNumber_3)
+        self.iOuterLayout.addWidget(self.i_value)
 
-        self.gridLayout_3 = QGridLayout()
-        self.gridLayout_3.setObjectName(u"gridLayout_3")
-        self.dial_3 = QDial(self.centralwidget)
-        self.dial_3.setObjectName(u"dial_3")
+        self.iInnerLayout = QGridLayout()
+        self.iInnerLayout.setObjectName(u"iInnerLayout")
+        self.i_dial = QDial(self.centralwidget)
+        self.i_dial.setObjectName(u"i_dial")
+        self.i_dial.setMaximum(1000)
+        self.i_dial.setSingleStep(10)
+        self.i_dial.setPageStep(100)
+        self.i_dial.setValue(0)
+        self.i_dial.setInvertedAppearance(False)
+        self.i_dial.setNotchTarget(0.000000000000000)
+        self.i_dial.setNotchesVisible(True)
 
-        self.gridLayout_3.addWidget(self.dial_3, 0, 0, 1, 1)
+        self.iInnerLayout.addWidget(self.i_dial, 0, 0, 1, 1)
 
-        self.label_6 = QLabel(self.centralwidget)
-        self.label_6.setObjectName(u"label_6")
-        self.label_6.setFont(font)
-        self.label_6.setScaledContents(False)
-        self.label_6.setAlignment(Qt.AlignCenter)
+        self.i_label = QLabel(self.centralwidget)
+        self.i_label.setObjectName(u"i_label")
+        self.i_label.setFont(font)
+        self.i_label.setScaledContents(False)
+        self.i_label.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout_3.addWidget(self.label_6, 0, 1, 1, 1)
-
-
-        self.verticalLayout_4.addLayout(self.gridLayout_3)
-
-
-        self.horizontalLayout_2.addLayout(self.verticalLayout_4)
-
-        self.verticalLayout_3 = QVBoxLayout()
-        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
-        self.lcdNumber_2 = QLCDNumber(self.centralwidget)
-        self.lcdNumber_2.setObjectName(u"lcdNumber_2")
-        self.lcdNumber_2.setAutoFillBackground(False)
-        self.lcdNumber_2.setFrameShape(QFrame.Box)
-        self.lcdNumber_2.setFrameShadow(QFrame.Raised)
-        self.lcdNumber_2.setSmallDecimalPoint(False)
-        self.lcdNumber_2.setDigitCount(5)
-        self.lcdNumber_2.setSegmentStyle(QLCDNumber.Filled)
-        self.lcdNumber_2.setProperty("value", 1.000000000000000)
-
-        self.verticalLayout_3.addWidget(self.lcdNumber_2)
-
-        self.gridLayout_2 = QGridLayout()
-        self.gridLayout_2.setObjectName(u"gridLayout_2")
-        self.dial_2 = QDial(self.centralwidget)
-        self.dial_2.setObjectName(u"dial_2")
-
-        self.gridLayout_2.addWidget(self.dial_2, 0, 0, 1, 1)
-
-        self.label_5 = QLabel(self.centralwidget)
-        self.label_5.setObjectName(u"label_5")
-        self.label_5.setFont(font)
-        self.label_5.setScaledContents(False)
-        self.label_5.setAlignment(Qt.AlignCenter)
-
-        self.gridLayout_2.addWidget(self.label_5, 0, 1, 1, 1)
+        self.iInnerLayout.addWidget(self.i_label, 0, 1, 1, 1)
 
 
-        self.verticalLayout_3.addLayout(self.gridLayout_2)
+        self.iOuterLayout.addLayout(self.iInnerLayout)
 
 
-        self.horizontalLayout_2.addLayout(self.verticalLayout_3)
+        self.horizontalLayout.addLayout(self.iOuterLayout)
+
+        self.dOuterLayout = QVBoxLayout()
+        self.dOuterLayout.setObjectName(u"dOuterLayout")
+        self.d_value = QLCDNumber(self.centralwidget)
+        self.d_value.setObjectName(u"d_value")
+        self.d_value.setAutoFillBackground(False)
+        self.d_value.setFrameShape(QFrame.Box)
+        self.d_value.setFrameShadow(QFrame.Raised)
+        self.d_value.setSmallDecimalPoint(False)
+        self.d_value.setDigitCount(5)
+        self.d_value.setSegmentStyle(QLCDNumber.Filled)
+        self.d_value.setProperty("value", 1.000000000000000)
+
+        self.dOuterLayout.addWidget(self.d_value)
+
+        self.dInnerLayout = QGridLayout()
+        self.dInnerLayout.setObjectName(u"dInnerLayout")
+        self.d_dial = QDial(self.centralwidget)
+        self.d_dial.setObjectName(u"d_dial")
+        self.d_dial.setMaximum(1000)
+        self.d_dial.setSingleStep(10)
+        self.d_dial.setPageStep(100)
+        self.d_dial.setValue(0)
+        self.d_dial.setInvertedAppearance(False)
+        self.d_dial.setNotchTarget(0.000000000000000)
+        self.d_dial.setNotchesVisible(True)
+
+        self.dInnerLayout.addWidget(self.d_dial, 0, 0, 1, 1)
+
+        self.d_label = QLabel(self.centralwidget)
+        self.d_label.setObjectName(u"d_label")
+        self.d_label.setFont(font)
+        self.d_label.setScaledContents(False)
+        self.d_label.setAlignment(Qt.AlignCenter)
+
+        self.dInnerLayout.addWidget(self.d_label, 0, 1, 1, 1)
 
 
-        self.verticalLayout_5.addLayout(self.horizontalLayout_2)
+        self.dOuterLayout.addLayout(self.dInnerLayout)
 
-        self.pushButton = QPushButton(self.centralwidget)
-        self.pushButton.setObjectName(u"pushButton")
 
-        self.verticalLayout_5.addWidget(self.pushButton)
+        self.horizontalLayout.addLayout(self.dOuterLayout)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout)
+
+        self.horizontalLayout_2 = QHBoxLayout()
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.send_m0_btn = QPushButton(self.centralwidget)
+        self.send_m0_btn.setObjectName(u"send_m0_btn")
+
+        self.horizontalLayout_2.addWidget(self.send_m0_btn)
+
+        self.send_m1_btn = QPushButton(self.centralwidget)
+        self.send_m1_btn.setObjectName(u"send_m1_btn")
+
+        self.horizontalLayout_2.addWidget(self.send_m1_btn)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout_2)
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
@@ -185,9 +213,10 @@ class Ui_MainWindow(object):
         self.action_Sair.setText(QCoreApplication.translate("MainWindow", u"&Sair", None))
         self.action_Carregar_ajuste.setText(QCoreApplication.translate("MainWindow", u"&Carregar ajuste", None))
         self.p_label.setText(QCoreApplication.translate("MainWindow", u"P", None))
-        self.label_6.setText(QCoreApplication.translate("MainWindow", u"I", None))
-        self.label_5.setText(QCoreApplication.translate("MainWindow", u"D", None))
-        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Enviar", None))
+        self.i_label.setText(QCoreApplication.translate("MainWindow", u"I", None))
+        self.d_label.setText(QCoreApplication.translate("MainWindow", u"D", None))
+        self.send_m0_btn.setText(QCoreApplication.translate("MainWindow", u"Enviar", None))
+        self.send_m1_btn.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
         self.menu_Arquivo.setTitle(QCoreApplication.translate("MainWindow", u"&Arquivo", None))
     # retranslateUi
 
