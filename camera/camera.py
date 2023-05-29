@@ -3,7 +3,7 @@ import cv2
 
 class Camera:
     def __init__(self):
-        self._cap = cv2.VideoCapture(0)
+        self._cap = cv2.VideoCapture("http://192.168.0.101:4747/video")
         self._bgr__frame = None
         self._hsv__frame = None
 

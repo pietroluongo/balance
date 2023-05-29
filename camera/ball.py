@@ -14,7 +14,7 @@ class Ball:
 
     @property
     def mask(self):
-        return self._color_data._hsv__color_mask
+        return self._color_data.color_mask
 
     @property
     def color_bounds(self):
@@ -31,3 +31,9 @@ class Ball:
     def tick(self):
         self._color_data.update_mask()
         self._center = self._color_data.get_center_and_update_bbox()
+
+    def to_json(self):
+        return {
+            "x": self._center[0],
+            "y": self._center[1],
+        }
