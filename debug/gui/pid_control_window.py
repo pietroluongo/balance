@@ -16,8 +16,6 @@ class PIDAdjustmentWindow(QMainWindow, Ui_MainWindow):
         self._ui.i_dial.valueChanged.connect(self._handle_i_dial_change)
         self._ui.d_dial.valueChanged.connect(self._handle_d_dial_change)
 
-        # self._ui.p_dial.setSingleStep(10)
-        # self._ui.p_dial.setNotchesVisible(True)
         self._ui.send_m0_btn.clicked.connect(self._handle_send_m0_button)
         self._ui.send_m1_btn.clicked.connect(self._handle_send_m1_button)
 
