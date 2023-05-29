@@ -13,9 +13,12 @@ void reconnect(PubSubClient &client) {
     if (client.connect("ESP32Client")) {
       Serial.println("connected");
       // Subscribe
-      client.subscribe("/balance/debug/setPosition");
-      // client.subscribe("balance/debug/m1");
-      // client.subscribe("balance/debug/m2");
+      // client.subscribe("/balance/debug/setPosition");
+      // client.subscribe("/balance/debug/m0");
+      // client.subscribe("/balance/debug/m1");
+      client.subscribe("/balance/ball");
+      client.subscribe("/balance/m0/pid");
+      client.subscribe("/balance/m1/pid");
     } else {
       Serial.print("failed, rc=");
       Serial.print(client.state());
@@ -28,7 +31,7 @@ void reconnect(PubSubClient &client) {
 
 void setup_wifi(PubSubClient &client) {
   delay(10);
-  // We start by connecting to a WiFi network
+  // We start by connecting t o a WiFi network
   Serial.println();
   Serial.print("Connecting to ");
   Serial.println(WIFI_SSID);
