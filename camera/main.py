@@ -73,7 +73,6 @@ def draw_composed_frame():
 
 def main():
     mqtt_sender.Sender()
-    print("Hello World")
     while True:
         show_original_frame()
         Sim.tick()
